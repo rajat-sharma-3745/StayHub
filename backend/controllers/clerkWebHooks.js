@@ -1,5 +1,5 @@
 import {Webhook} from 'svix'
-import User from '../models/User';
+import User from '../models/User.js';
 // svix is a webhook service that clerk uses to send webhooks events securely
 
 
