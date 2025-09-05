@@ -1,7 +1,7 @@
 
 // GET /api/user
 
-import User from "../models/User";
+import User from "../models/User.js";
 
 export const getUserData = async(req,res) => {
     try {

@@ -7,6 +7,7 @@ import clerkWebHooks from './controllers/clerkWebHooks.js';
 import userRouter from './routes/userRoutes.js';
 import hotelRouter from './routes/hotelRoutes.js';
 import roomRouter from './routes/roomRoutes.js';
+import bookingRouter from './routes/bookingRoutes.js';
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.get('/',(req,res)=>{
 app.use('/api/user',userRouter);
 app.use('/api/hotels',hotelRouter);
 app.use('/api/rooms',roomRouter);
+app.use('/api/booking',bookingRouter);
 
 
 const PORT = process.env.PORT || 8000;
