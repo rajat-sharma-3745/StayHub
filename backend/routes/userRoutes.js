@@ -6,7 +6,7 @@ import { recentSearchedCities } from '../controllers/userController.js';
 const userRouter = Router();
 
 userRouter.get('/',protect,getUserData)
-userRouter.get('/recent-search',protect,recentSearchedCities)
+userRouter.post('/recent-search',protect,recentSearchedCities)
 
 
 export default userRouter
