@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useClerk, UserButton } from "@clerk/clerk-react";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { useClerk, useUser, UserButton } from "@clerk/clerk-react";
+import { useAppContext } from "../context/AppContext";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Hotels", path: "/rooms" },
@@ -19,9 +20,9 @@ const Navbar = () => {
 
   // these are clerk hooks
   const { openSignIn } = useClerk(); // this hook gives us access of clerk core methods and here we are using openSignIn which is a function which opens the clerk prebuilt sign in modal
-  const { user } = useUser(); // this hook that provides information about the currently signed-in user.The user object contains details like id, emailAddresses, fullName, etc.If no one is signed in, user will be null.
+  // const { user } = useUser(); // this hook that provides information about the currently signed-in user.The user object contains details like id, emailAddresses, fullName, etc.If no one is signed in, user will be null.
 
-  const navigate = useNavigate();
+  const {user,navigate,isOwner,setShowHotelReg} = useAppContext();
   const location = useLocation();
 
   useEffect(() => {
@@ -74,13 +75,13 @@ const Navbar = () => {
             />
           </Link>
         ))}
-        <button onClick={()=>navigate('/owner')} 
+        {user && <button onClick={()=>isOwner?navigate('/owner'):setShowHotelReg(p=>!p)} 
           className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${
             isScrolled ? "text-black" : "text-white"
           } transition-all`}
         >
-          Dashboard
-        </button>
+          {isOwner?"Dashboard":"List Your Hotel"}
+        </button>}
       </div>
 
       {/* Desktop Right */}
@@ -146,8 +147,9 @@ const Navbar = () => {
           </Link>
         ))}
 
-       {user && <button onClick={()=>navigate('/owner')} className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-          Dashboard
+       {user && <button onClick={()=>isOwner?navigate('/owner'):setShowHotelReg(p=>!p)}  className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
+                   {isOwner?"Dashboard":"List Your Hotel"}
+
         </button>}
 
         {!user && 
