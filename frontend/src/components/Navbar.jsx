@@ -6,8 +6,6 @@ import { useAppContext } from "../context/AppContext";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Hotels", path: "/rooms" },
-  { name: "Experience", path: "/" },
-  { name: "About", path: "/about" },
 ];
 const BookIcon = ()=>(
     <svg className="w-4 h-4 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" >
